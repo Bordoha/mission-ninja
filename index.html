@@ -397,7 +397,7 @@
     </section>
 
     <p class="footer-note">
-      La progression est enregistrée sur ce téléphone. En cas de besoin, utilisez « Réinitialiser ».
+      La progression est enregistrée sur ce téléphone. En cas de besoin, utilisez le bouton « Réinitialiser ».
     </p>
 
     <div class="visually-hidden" aria-live="polite" id="liveRegion"></div>
@@ -516,7 +516,7 @@
       card.dataset.questionId = question.id;
 
       let badgeClass = "status-badge pending";
-      let badgeText = "🥷";
+      let badgeText = "🔓";
       let badgeLabel = "Réponse en attente";
       let feedbackText = "";
       let feedbackClass = "feedback";
@@ -649,7 +649,7 @@
         saveState(currentState);
 
         badge.className = "status-badge pending";
-        badge.textContent = "🥷";
+        badge.textContent = "🔓";
         badge.setAttribute("aria-label", "Réponse en attente");
 
         feedback.className = "feedback";
