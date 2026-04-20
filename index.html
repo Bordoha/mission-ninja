@@ -359,7 +359,7 @@
     <section class="hero">
       <h1>Mission ninja</h1>
       <p class="intro">
-        Répondez correctement aux 3 énigmes. Les questions se débloquent une par une.
+        Répondez correctement aux 3 questions. Chaque bonne réponse débloque la question suivante.
       </p>
     </section>
 
@@ -397,7 +397,7 @@
     </section>
 
     <p class="footer-note">
-      La progression est enregistrée sur ce téléphone. En cas de besoin, utilise « Réinitialiser ».
+      La progression est enregistrée sur ce téléphone. En cas de besoin, utilisez « Réinitialiser ».
     </p>
 
     <div class="visually-hidden" aria-live="polite" id="liveRegion"></div>
@@ -413,7 +413,7 @@
       {
         id: 2,
         text: "Question 2 : Quel est le mobile du voleur ?",
-        answers: ["devenir hogokei", "test"]
+        answers: ["devenir hogake", "test"]
       },
       {
         id: 3,
@@ -422,7 +422,7 @@
       }
     ];
 
-    const STORAGE_KEY = "mission-ninja-progress-v3";
+    const STORAGE_KEY = "mission-ninja-progress-v1";
 
     const questionsContainer = document.getElementById("questionsContainer");
     const progressText = document.getElementById("progressText");
@@ -526,13 +526,13 @@
         badgeText = "✓";
         badgeLabel = "Réponse validée";
         feedbackClass = "feedback success";
-        feedbackText = "Bonne réponse validée.";
+        feedbackText = "Bravo, bonne réponse validée.";
       } else if (disabledBecauseLocked) {
         badgeClass = "status-badge locked";
         badgeText = "🔒";
         badgeLabel = "Question verrouillée";
         feedbackClass = "feedback locked";
-        feedbackText = "Valide d’abord la question précédente.";
+        feedbackText = "Validez d’abord la question précédente.";
       }
 
       card.innerHTML = `
@@ -631,7 +631,7 @@
           badge.setAttribute("aria-label", "Réponse incorrecte");
 
           feedback.className = "feedback error";
-          feedback.textContent = "Ce n’est pas la bonne réponse. Réessaie.";
+          feedback.textContent = "Ce n’est pas la bonne réponse.";
 
           updateProgress(currentState);
           announce(`Question ${question.id} : réponse incorrecte.`);
@@ -671,7 +671,7 @@
     }
 
     resetProgressBtn.addEventListener("click", () => {
-      const confirmed = window.confirm("Veux-tu vraiment réinitialiser la progression ?");
+      const confirmed = window.confirm("Voulez-vous vraiment réinitialiser la progression ?");
       if (!confirmed) return;
 
       localStorage.removeItem(STORAGE_KEY);
