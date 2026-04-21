@@ -413,7 +413,8 @@
       {
         id: 2,
         text: "Question 2 : Quel est le mobile du voleur ?",
-        answers: ["devenir hogake", "test"]
+        answers: [],
+        requiredPhrase: "message éternel"
       },
       {
         id: 3,
@@ -438,6 +439,20 @@
         .toLowerCase()
         .trim()
         .replace(/\s+/g, " ");
+    }
+
+    function isAnswerCorrect(question, userValue) {
+      const normalizedValue = normalizeText(userValue);
+
+      const matchesExactAnswer = (question.answers || [])
+        .map(normalizeText)
+        .includes(normalizedValue);
+
+      const matchesRequiredPhrase = question.requiredPhrase
+        ? normalizedValue.includes(normalizeText(question.requiredPhrase))
+        : false;
+
+      return matchesExactAnswer || matchesRequiredPhrase;
     }
 
     function loadState() {
@@ -601,9 +616,7 @@
           return;
         }
 
-        const isCorrect = question.answers
-          .map(normalizeText)
-          .includes(normalizedValue);
+        const isCorrect = isAnswerCorrect(question, userValue);
 
         if (isCorrect) {
           currentState[question.id] = {
